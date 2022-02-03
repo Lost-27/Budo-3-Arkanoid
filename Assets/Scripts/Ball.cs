@@ -1,31 +1,36 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Ball : MonoBehaviour
 {
     #region Variables
 
-    public float Speed = 300.0f;
-    public Transform PadTransform;
+    private const float _numRange = 1.0f;
 
-    private Rigidbody2D _rb;
+    [Header("Base settings")]
+    [SerializeField] private float _speed = 300.0f;
+    [SerializeField] private Rigidbody2D _rb;
+
+    [Header("Pad setting")]
+    [SerializeField] private Transform _padTransform;
+
+    private float YOffsetFromPad = 1.0f;
     private bool _isStarted;
-    private float YOffsetFromPad = 1f;
+
+    #endregion
+
+
+    #region Properties
+
+    public Rigidbody2D Rb => _rb;
 
     #endregion
 
 
     #region Unity lifecycle
 
-    private void Awake()
-    {
-        _rb = GetComponent<Rigidbody2D>();
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("DownWall"))
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //Lives
     }
 
     private void Update()
@@ -50,22 +55,22 @@ public class Ball : MonoBehaviour
 
     private void AddStartingForce()
     {
-        _rb.AddForce(RandomDirection() * Speed);
+        _rb.AddForce(RandomDirection() * _speed);
         _isStarted = true;
     }
 
     private Vector2 RandomDirection()
     {
-        float x = Random.Range(-1.0f, 1.0f);
-        float y = 1f;
+        float x = Random.Range(-_numRange, _numRange);
+        float y = _numRange;
 
-        Vector2 direction = new Vector2(x, y);
-        return direction.normalized;
+        Vector2 direction = new Vector2(x, y).normalized;
+        return direction;
     }
 
     private void MoveBallWithPad()
     {
-        Vector3 currentPos = PadTransform.position;
+        Vector3 currentPos = _padTransform.position;
         currentPos.y += YOffsetFromPad;
         transform.position = currentPos;
     }

@@ -7,25 +7,19 @@ public class Block : MonoBehaviour
     public Sprite[] States;
     public int PointValue;
         
-    private SpriteRenderer _spriteRend;
-    private GameManager _gameManager;
-    private int Health;
+    [SerializeField] private SpriteRenderer _spriteRend;
+        
+    private int _health;
     
     #endregion
 
 
     #region Unity lifecycle
-
-    private void Awake()
-    {
-        _spriteRend = GetComponent<SpriteRenderer>();
-        _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-    }
-
+        
     private void Start()
     {
-        Health = States.Length;
-        Update—urrentState();
+        _health = States.Length;
+        UpdateCurrentState();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -40,22 +34,20 @@ public class Block : MonoBehaviour
 
     private void GetHit()
     {
-        Health--;
+        _health--;
 
-        if (Health <= 0)
+        if (_health <= 0)
         {
             Destroy(gameObject);
-            _gameManager.UpdateScore(PointValue);
-        }
-        
+            GameManager.Instance.AddScore(PointValue);            
+        }        
         else
-            Update—urrentState();
-                
+            UpdateCurrentState();                
     }
 
-    private void Update—urrentState()
+    private void UpdateCurrentState()
     {
-        _spriteRend.sprite = States[Health - 1];
+        _spriteRend.sprite = States[_health - 1];
     }
 
     #endregion

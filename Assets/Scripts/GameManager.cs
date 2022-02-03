@@ -1,22 +1,49 @@
+using System;
 using TMPro;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : GeneralSingleton<GameManager>
 {
     #region Variables
 
-    public TextMeshProUGUI ScoreLabel;
+    public int lives = 3;
 
-    private int _score;
+    [SerializeField] private GameObject _pauseScreen;
+    [SerializeField] private TextMeshProUGUI _scoreLabel;
+        
+    #endregion
+
+
+    #region Properties
+        
+    public int Score { get; private set; }
+    public bool IsPaused { get; private set; }
 
     #endregion
 
 
     #region Unity lifecycle
+     
 
-    void Start()
+    private void Start()
     {
-        UpdateScore(_score);
+        UpdateScoreOnScreen();
+    }
+
+    private void Update()
+    {
+        if (IsEscPressed())
+        {
+            ChangePaused();
+        }
+    }
+
+
+    private void ChangePaused()
+    {
+        IsPaused = !IsPaused;
+
+        Time.timeScale = IsPaused ? 0 : 1;
     }
 
     #endregion
@@ -24,10 +51,25 @@ public class GameManager : MonoBehaviour
 
     #region Public methods
 
-    public void UpdateScore(int pointValue)
+    public void AddScore(int pointValue)
     {
-        _score += pointValue;
-        ScoreLabel.text = "Score: " + _score;
+        Score += pointValue;
+        UpdateScoreOnScreen();
+    }
+
+    #endregion
+
+
+    #region Private methods
+
+    private void UpdateScoreOnScreen()
+    {
+        _scoreLabel.text = "Score: " + Score;
+    }
+
+    private bool IsEscPressed()
+    {
+        return Input.GetKeyDown(KeyCode.Escape);
     }
 
     #endregion

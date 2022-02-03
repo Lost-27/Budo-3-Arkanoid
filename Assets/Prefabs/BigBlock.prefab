@@ -122,11 +122,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3acc1195bdbbca46b3837ac7813587e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpriteRend: {fileID: 0}
   States:
   - {fileID: 21300000, guid: 29179e0dbdfbc854a91f3cb69d5c43f3, type: 3}
   - {fileID: 21300000, guid: 538acc222f9642e40b8719180d608ffe, type: 3}
   - {fileID: 21300000, guid: 0e4a8c0da908ff04ca5139b12fafc5ac, type: 3}
-  Health: 0
   PointValue: 100
-  Unbreakable: 0
+  _spriteRend: {fileID: 1952745412751805300}
