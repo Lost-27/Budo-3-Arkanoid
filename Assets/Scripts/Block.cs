@@ -9,6 +9,7 @@ public class Block : MonoBehaviour
     public SpriteRenderer SpriteRend;
     public int PointValue;
     public bool IsIndestructible;
+    public bool IsInvisible;
 
     private int _health;
 
@@ -31,11 +32,16 @@ public class Block : MonoBehaviour
             UpdateCurrentState();
             OnCreated?.Invoke();
         }
+        if (IsInvisible)
+        {
+            SpriteRend.enabled = false;
+        }
         
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        
         GetHit();
     }
 
@@ -48,7 +54,14 @@ public class Block : MonoBehaviour
     {
         if (IsIndestructible)
             return;
-
+        
+        if (IsInvisible)
+        {
+            SpriteRend.enabled = true;
+            IsInvisible = false;
+            return;
+        }
+        
         _health--;
 
         if (_health <= 0)
