@@ -46,13 +46,12 @@ public class Pad : MonoBehaviour
     private void MovingPadWithMouse()
     {
         Vector2 mousePos = Input.mousePosition;
-        Vector2 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
-        Debug.Log(worldPos);
+        Vector2 worldPos = Camera.main.ScreenToWorldPoint(mousePos);        
 
         Vector2 currentPos = transform.position;
         currentPos.x = Mathf.Clamp(worldPos.x, -_xRange, _xRange);
         transform.position = currentPos;
     }
-
+    
     #endregion
 }

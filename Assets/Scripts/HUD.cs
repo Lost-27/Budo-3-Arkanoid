@@ -7,7 +7,7 @@ public class HUD : MonoBehaviour
 
     public int lives = 3;
 
-    public GameObject PauseScreen;
+    public GameObject _pauseScreen;
     public TextMeshProUGUI ScoreLabel;
 
     #endregion
