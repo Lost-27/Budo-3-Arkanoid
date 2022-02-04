@@ -126,5 +126,5 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 29179e0dbdfbc854a91f3cb69d5c43f3, type: 3}
   - {fileID: 21300000, guid: 538acc222f9642e40b8719180d608ffe, type: 3}
   - {fileID: 21300000, guid: 0e4a8c0da908ff04ca5139b12fafc5ac, type: 3}
+  SpriteRend: {fileID: 1952745412751805300}
   PointValue: 100
-  _spriteRend: {fileID: 1952745412751805300}

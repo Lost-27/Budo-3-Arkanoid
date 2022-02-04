@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Block : MonoBehaviour
@@ -5,21 +6,32 @@ public class Block : MonoBehaviour
     #region Variables
 
     public Sprite[] States;
+    public SpriteRenderer SpriteRend;
     public int PointValue;
-        
-    [SerializeField] private SpriteRenderer _spriteRend;
-        
+    public bool IsIndestructible;
+
     private int _health;
-    
+
     #endregion
 
+    #region Events
 
-    #region Unity lifecycle
-        
+    public static event Action OnCreated;
+    public static event Action<Block> OnDestroyed;
+
+    #endregion
+
+    #region Unity lifecycle  
+    
     private void Start()
     {
-        _health = States.Length;
-        UpdateCurrentState();
+        if (!IsIndestructible)
+        {
+            _health = States.Length;
+            UpdateCurrentState();
+            OnCreated?.Invoke();
+        }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -34,20 +46,24 @@ public class Block : MonoBehaviour
 
     private void GetHit()
     {
+        if (IsIndestructible)
+            return;
+
         _health--;
 
         if (_health <= 0)
         {
+            GameManager.Instance.AddScore(PointValue);
             Destroy(gameObject);
-            GameManager.Instance.AddScore(PointValue);            
-        }        
+            OnDestroyed?.Invoke(this);
+        }
         else
             UpdateCurrentState();                
     }
 
     private void UpdateCurrentState()
     {
-        _spriteRend.sprite = States[_health - 1];
+        SpriteRend.sprite = States[_health - 1];
     }
 
     #endregion
