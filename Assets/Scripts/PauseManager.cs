@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PauseManager : GeneralSingleton<PauseManager>
 {
     #region Properties
 
-    public GameObject _pauseScreen;
     public bool IsPaused { get; private set; }
 
     #endregion
 
-    #region Unity lifecycle    
-    
+    #region Unity lifecycle
+
     private void Update()
     {
         if (IsEscPressed())
@@ -35,7 +32,7 @@ public class PauseManager : GeneralSingleton<PauseManager>
     private bool IsEscPressed()
     {
         return Input.GetKeyDown(KeyCode.Escape);
-    }   
+    }
 
     #endregion
 }

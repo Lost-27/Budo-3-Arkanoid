@@ -5,9 +5,7 @@ public class HUD : MonoBehaviour
 {
     #region Variables
 
-    public int lives = 3;
-
-    public GameObject _pauseScreen;
+    public TextMeshProUGUI LivesLabel;
     public TextMeshProUGUI ScoreLabel;
 
     #endregion
@@ -20,5 +18,6 @@ public class HUD : MonoBehaviour
     private void Update()
     {
         ScoreLabel.text = $"Score: {GameManager.Instance.Score}";
+        LivesLabel.text = $"Lives: {GameManager.Instance.Lives}";
     }
 }

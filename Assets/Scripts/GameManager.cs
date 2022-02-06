@@ -1,10 +1,11 @@
+using System;
 using UnityEngine;
 
 public class GameManager : GeneralSingleton<GameManager>
 {
     #region Variables
 
-    public int lives = 3;
+    public int Lives;
     private bool _isGameOver;
 
     #endregion
@@ -12,20 +13,27 @@ public class GameManager : GeneralSingleton<GameManager>
 
     #region Properties
 
-    public int Score { get; private set; }    
-    
+    public int Score { get; private set; }
+
     #endregion
 
 
-    #region Unity lifecycle    
+    #region Unity lifecycle
+
+    private void Start()
+    {
+        Reset();
+    }
+
     private void OnEnable()
     {
         LevelManager.Instance.OnGameOver += GameOver;
     }
+
     private void OnDisable()
     {
         LevelManager.Instance.OnGameOver -= GameOver;
-    }     
+    }
 
     #endregion
 
@@ -35,18 +43,20 @@ public class GameManager : GeneralSingleton<GameManager>
     public void Reset()
     {
         Score = 0;
+        Lives = 3;
         _isGameOver = false;
     }
+
     public void AddScore(int pointValue)
     {
-        Score += pointValue;        
-    }    
+        Score += pointValue;
+    }
 
     #endregion
 
 
-    #region Private methods    
-    
+    #region Private methods
+
     private void GameOver()
     {
         if (_isGameOver)
@@ -55,5 +65,4 @@ public class GameManager : GeneralSingleton<GameManager>
     }
 
     #endregion
-
 }

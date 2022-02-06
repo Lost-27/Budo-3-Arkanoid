@@ -45,13 +45,15 @@ public class Pad : MonoBehaviour
 
     private void MovingPadWithMouse()
     {
+        if (PauseManager.Instance.IsPaused) return;
+
         Vector2 mousePos = Input.mousePosition;
-        Vector2 worldPos = Camera.main.ScreenToWorldPoint(mousePos);        
+        Vector2 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
 
         Vector2 currentPos = transform.position;
         currentPos.x = Mathf.Clamp(worldPos.x, -_xRange, _xRange);
         transform.position = currentPos;
     }
-    
+
     #endregion
 }

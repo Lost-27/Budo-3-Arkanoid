@@ -1,4 +1,3 @@
-using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class BottomWall : MonoBehaviour
@@ -8,7 +7,13 @@ public class BottomWall : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag(Tags.Ball))
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            GameManager.Instance.Lives--;
+        if (GameManager.Instance.Lives <= 0)
+        {
+            SceneHelper.Instance.LoadScene(1);
+            GameManager.Instance.Reset();
+        }
+            
     }
 
     #endregion
