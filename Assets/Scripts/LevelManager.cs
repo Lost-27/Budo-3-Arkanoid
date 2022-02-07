@@ -31,6 +31,7 @@ public class LevelManager : GeneralSingleton<LevelManager>
 
     #endregion
 
+
     #region Private methods
 
     private void AddBlock()

@@ -6,16 +6,6 @@ public class PausePanel : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (PauseManager.Instance.IsPaused)
-            {
-                PauseScreen.SetActive(true);
-            }
-            else
-            {
-                PauseScreen.SetActive(false);
-            }
-        }
+        PauseScreen.SetActive(PauseManager.Instance.IsPaused);
     }
 }

@@ -8,6 +8,7 @@ public class PauseManager : GeneralSingleton<PauseManager>
 
     #endregion
 
+
     #region Unity lifecycle
 
     private void Update()
@@ -19,6 +20,7 @@ public class PauseManager : GeneralSingleton<PauseManager>
     }
 
     #endregion
+
 
     #region Private methods
 

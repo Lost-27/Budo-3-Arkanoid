@@ -15,12 +15,14 @@ public class Block : MonoBehaviour
 
     #endregion
 
+
     #region Events
 
     public static event Action OnCreated;
     public static event Action<Block> OnDestroyed;
 
     #endregion
+
 
     #region Unity lifecycle  
     
@@ -32,16 +34,15 @@ public class Block : MonoBehaviour
             UpdateCurrentState();
             OnCreated?.Invoke();
         }
+
         if (IsInvisible)
         {
             SpriteRend.enabled = false;
-        }
-        
+        }        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
-    {
-        
+    {        
         GetHit();
     }
 

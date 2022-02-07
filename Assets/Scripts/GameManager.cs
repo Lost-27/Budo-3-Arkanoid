@@ -4,8 +4,8 @@ using UnityEngine;
 public class GameManager : GeneralSingleton<GameManager>
 {
     #region Variables
-
-    public int Lives;
+        
+    public int Lives = 3;
     private bool _isGameOver;
 
     #endregion

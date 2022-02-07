@@ -14,7 +14,8 @@ public class Ball : MonoBehaviour
     [SerializeField] private Transform _padTransform;
 
     private float YOffsetFromPad = 1.0f;
-    private bool _isStarted;
+    public bool _isStarted;
+    //public bool _isForce;
 
     #endregion
 
@@ -26,12 +27,7 @@ public class Ball : MonoBehaviour
     #endregion
 
 
-    #region Unity lifecycle
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        //Lives
-    }
+    #region Unity lifecycle      
 
     private void Update()
     {
@@ -46,6 +42,18 @@ public class Ball : MonoBehaviour
         {
             AddStartingForce();
         }
+    }
+
+    #endregion
+
+
+    #region Public methods
+
+    public void MoveBallWithPad()
+    {
+        Vector3 currentPos = _padTransform.position;
+        currentPos.y += YOffsetFromPad;
+        transform.position = currentPos;
     }
 
     #endregion
@@ -67,13 +75,5 @@ public class Ball : MonoBehaviour
         Vector2 direction = new Vector2(x, y).normalized;
         return direction;
     }
-
-    private void MoveBallWithPad()
-    {
-        Vector3 currentPos = _padTransform.position;
-        currentPos.y += YOffsetFromPad;
-        transform.position = currentPos;
-    }
-
     #endregion
 }

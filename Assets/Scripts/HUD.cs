@@ -10,14 +10,14 @@ public class HUD : MonoBehaviour
 
     #endregion
 
-    private void Start()
-    {
-    }
 
+    #region Unity lifecycle
 
     private void Update()
     {
         ScoreLabel.text = $"Score: {GameManager.Instance.Score}";
         LivesLabel.text = $"Lives: {GameManager.Instance.Lives}";
     }
+
+    #endregion
 }
