@@ -8,10 +8,10 @@ public class BottomWall : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(Tags.Ball))
         {
-            Ball ball = collision.gameObject.GetComponent<Ball>();
             GameManager.Instance.Lives--;
-            ball.MoveBallWithPad();
-            ball._isStarted = false;            
+            
+            Ball ball = collision.gameObject.GetComponent<Ball>();
+            ball.InitialState();
         }
 
         if (GameManager.Instance.Lives <= 0)

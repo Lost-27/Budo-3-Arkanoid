@@ -13,17 +13,9 @@ public class HeartSystem : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.Lives < 1)
+        for (int i = 0; i < Hearts.Length; i++)
         {
-            Destroy(Hearts[0]);
-        }
-        else if (GameManager.Instance.Lives < 2)
-        {
-            Destroy(Hearts[1]);
-        }
-        else if (GameManager.Instance.Lives < 3)
-        {
-            Destroy(Hearts[2]);
+            Hearts[i].SetActive(GameManager.Instance.Lives > i);
         }
     }
 

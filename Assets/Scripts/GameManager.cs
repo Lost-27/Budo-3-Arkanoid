@@ -11,6 +11,13 @@ public class GameManager : GeneralSingleton<GameManager>
     #endregion
 
 
+    #region Events
+
+    public event Action OnScoreUpdated;
+
+    #endregion
+
+
     #region Properties
 
     public int Score { get; private set; }
@@ -50,6 +57,7 @@ public class GameManager : GeneralSingleton<GameManager>
     public void AddScore(int pointValue)
     {
         Score += pointValue;
+        OnScoreUpdated?.Invoke();
     }
 
     #endregion

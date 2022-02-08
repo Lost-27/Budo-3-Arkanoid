@@ -4,7 +4,7 @@ public class Ball : MonoBehaviour
 {
     #region Variables
 
-    private const float _numRange = 1.0f;
+    private const float NUM_RANGE = 1.0f;
 
     [Header("Base settings")]
     [SerializeField] private float _speed = 300.0f;
@@ -13,9 +13,8 @@ public class Ball : MonoBehaviour
     [Header("Pad setting")]
     [SerializeField] private Transform _padTransform;
 
-    private float YOffsetFromPad = 1.0f;
-    public bool _isStarted;
-    //public bool _isForce;
+    private float _yOffsetFromPad = 1.0f;
+    private bool _isStarted;    
 
     #endregion
 
@@ -36,7 +35,7 @@ public class Ball : MonoBehaviour
             return;
         }
 
-        MoveBallWithPad();
+        MagnetBallToPad();
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -49,17 +48,23 @@ public class Ball : MonoBehaviour
 
     #region Public methods
 
-    public void MoveBallWithPad()
+    public void InitialState()
     {
-        Vector3 currentPos = _padTransform.position;
-        currentPos.y += YOffsetFromPad;
-        transform.position = currentPos;
+        _isStarted = false;
+        _rb.velocity = Vector2.zero;                
     }
 
     #endregion
 
 
     #region Private methods
+
+    private void MagnetBallToPad()
+    {
+        Vector3 currentPos = _padTransform.position;
+        currentPos.y += _yOffsetFromPad;
+        transform.position = currentPos;
+    }
 
     private void AddStartingForce()
     {
@@ -69,8 +74,8 @@ public class Ball : MonoBehaviour
 
     private Vector2 RandomDirection()
     {
-        float x = Random.Range(-_numRange, _numRange);
-        float y = _numRange;
+        float x = Random.Range(-NUM_RANGE, NUM_RANGE);
+        float y = NUM_RANGE;
 
         Vector2 direction = new Vector2(x, y).normalized;
         return direction;
