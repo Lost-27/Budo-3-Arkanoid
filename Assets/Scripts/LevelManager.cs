@@ -40,9 +40,7 @@ public class LevelManager : GeneralSingleton<LevelManager>
     }
     private void RemoveBlock(Block block)
     {
-        _blocksCount--;
-
-        
+        _blocksCount--;        
 
         if (_blocksCount <= 0)
         {

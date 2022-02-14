@@ -40,7 +40,7 @@ public class GameOverScreen : MonoBehaviour
 
     private void PlayButtonClicked()
     {
-        GameManager.Instance.Reset();
+        GameManager.Instance.Reload();
         _sceneHelper.LoadScene(1);
     }
 

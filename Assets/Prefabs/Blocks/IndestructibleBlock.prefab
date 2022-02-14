@@ -122,7 +122,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3acc1195bdbbca46b3837ac7813587e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  States: []
-  SpriteRend: {fileID: 645101841045816462}
-  PointValue: 0
-  IsIndestructible: 1
+  _states: []
+  _spriteRend: {fileID: 645101841045816462}
+  _pointValue: 0
+  _isIndestructible: 1
+  _isInvisible: 0
+  _pickupPrefab: []
+  _pickupChance: 0

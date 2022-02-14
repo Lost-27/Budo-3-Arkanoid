@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8826389027364121920}
+  - component: {fileID: 8826389027364121925}
   - component: {fileID: 8826389027364121927}
   - component: {fileID: 8826389027364121926}
-  - component: {fileID: 8826389027364121925}
   m_Layer: 0
-  m_Name: IsInvisibleBlock
+  m_Name: InvisibleBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,6 +33,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8826389027364121925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8826389027364121924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3acc1195bdbbca46b3837ac7813587e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _states:
+  - {fileID: 21300000, guid: 20aa417c2510d644f9a9abf7e663958a, type: 3}
+  - {fileID: 21300000, guid: 00b6dc9d9e59a514ba5ce567dd164e7e, type: 3}
+  - {fileID: 21300000, guid: 89b720a7ff8b8514fa70f73c092266fb, type: 3}
+  _spriteRend: {fileID: 8826389027364121927}
+  _pointValue: 100
+  _isIndestructible: 0
+  _isInvisible: 1
+  _pickupPrefab:
+  - {fileID: 9033946533651429550, guid: b3907cdf81638804289263111cd1ede9, type: 3}
+  - {fileID: 9033946533651429550, guid: d377be424d692e940a7b56cf01740018, type: 3}
+  - {fileID: 3097865665564421336, guid: c3fcc434fe234994c9934d00193a30b3, type: 3}
+  - {fileID: 3097865665564421336, guid: fca69740995a1ab46b50ccb4fd1815c0, type: 3}
+  - {fileID: 1588934045220091773, guid: 0bb54871e077f514fae4f15863532325, type: 3}
+  - {fileID: 6501093463460272498, guid: d98181f98c0d697489da42d995ce6492, type: 3}
+  - {fileID: 6501093463460272498, guid: f29ca20b245567b4db2f1c67d55e8931, type: 3}
+  - {fileID: 6501093463460272498, guid: beefa5e0db7bb8f48be02769025a2118, type: 3}
+  - {fileID: 6501093463460272498, guid: 0d0f36e854f9da14ca37d6c3a5726bb1, type: 3}
+  _pickupChance: 88.1
 --- !u!212 &8826389027364121927
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -110,23 +141,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8826389027364121925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8826389027364121924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3acc1195bdbbca46b3837ac7813587e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  States:
-  - {fileID: 21300000, guid: 20aa417c2510d644f9a9abf7e663958a, type: 3}
-  - {fileID: 21300000, guid: 00b6dc9d9e59a514ba5ce567dd164e7e, type: 3}
-  - {fileID: 21300000, guid: 89b720a7ff8b8514fa70f73c092266fb, type: 3}
-  SpriteRend: {fileID: 8826389027364121927}
-  PointValue: 0
-  IsIndestructible: 0
-  IsInvisible: 1

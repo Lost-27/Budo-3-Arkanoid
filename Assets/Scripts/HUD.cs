@@ -4,33 +4,21 @@ using UnityEngine;
 public class HUD : MonoBehaviour
 {
     #region Variables
-
-    public TextMeshProUGUI LivesLabel;
+    
     public TextMeshProUGUI ScoreLabel;
 
     #endregion
 
 
     #region Unity lifecycle
-
     private void Start()
-    {
-        UpdateScoreLabel();
+    {        
+        GameManager.Instance.OnScoreChanged += UpdateScoreLabel;        
     }
 
-    private void OnEnable()
+    private void OnDestroy()
     {
-        GameManager.Instance.OnScoreUpdated += UpdateScoreLabel;
-    }
-
-    private void OnDisable()
-    {
-        GameManager.Instance.OnScoreUpdated -= UpdateScoreLabel;
-    }
-
-    private void Update()
-    {
-        UpdateLivesLabel();
+        GameManager.Instance.OnScoreChanged -= UpdateScoreLabel;        
     }
 
     #endregion
@@ -41,12 +29,7 @@ public class HUD : MonoBehaviour
     private void UpdateScoreLabel()
     {
         ScoreLabel.text = $"Score: {GameManager.Instance.Score}";
-    }
-
-    private void UpdateLivesLabel()
-    {
-        LivesLabel.text = $"Lives: {GameManager.Instance.Lives}";
-    }
+    }    
 
     #endregion
 }

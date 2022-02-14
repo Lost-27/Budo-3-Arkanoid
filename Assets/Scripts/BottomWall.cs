@@ -7,17 +7,15 @@ public class BottomWall : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag(Tags.Ball))
-        {
-            GameManager.Instance.Lives--;
-            
+        {            
+            GameManager.Instance.RemoveLive();
             Ball ball = collision.gameObject.GetComponent<Ball>();
             ball.InitialState();
         }
-
-        if (GameManager.Instance.Lives <= 0)
+        else
         {
-            SceneHelper.Instance.LoadScene(2);            
-        }
+            Destroy(collision.gameObject);
+        }        
     }
 
     #endregion
