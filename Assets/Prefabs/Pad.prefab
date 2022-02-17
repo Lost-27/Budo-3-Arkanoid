@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2807017184131411198}
   - component: {fileID: 2807017184131411193}
   - component: {fileID: 2807017184131411192}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Pad
   m_TagString: Pad
   m_Icon: {fileID: 0}
@@ -98,7 +98,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _xRange: 0
-  _maxBounseAngle: 75
+  _maxBounceAngle: 75
+  _minSizePad: 0.3
+  _maxSizePad: 0
 --- !u!61 &2807017184131411192
 BoxCollider2D:
   m_ObjectHideFlags: 0

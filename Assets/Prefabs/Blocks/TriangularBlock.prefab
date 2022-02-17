@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1894730206860613645}
   - component: {fileID: 5652946716402851386}
   - component: {fileID: 1424632521568118986}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TriangularBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}

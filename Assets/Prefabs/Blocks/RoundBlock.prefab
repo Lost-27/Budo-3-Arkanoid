@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5157270645703412765}
   - component: {fileID: 1008437589852240794}
   - component: {fileID: 7075451317191341732}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RoundBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}

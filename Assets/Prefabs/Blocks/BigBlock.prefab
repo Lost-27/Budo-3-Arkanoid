@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3187131968876485307}
   - component: {fileID: 1952745412751805300}
   - component: {fileID: 3533795361164946958}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BigBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}

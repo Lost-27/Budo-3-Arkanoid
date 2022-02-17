@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6501093463460272503}
   - component: {fileID: 3228713319184056425}
   - component: {fileID: 4032364598418142850}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PadScaleLessPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -144,4 +144,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d15c1430e7805cf419d0953dbcad3a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _padWidthScaling: {x: 0.5, y: 1}
+  _activeTime: 0
+  _sizeModifier: 0.3

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2564333578263356861}
   - component: {fileID: 2564333578263356860}
   - component: {fileID: 2564333578263356851}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ball
   m_TagString: Ball
   m_Icon: {fileID: 0}
@@ -48,7 +48,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 600
   _rb: {fileID: 2564333578263356860}
-  _ballPrefab: {fileID: 2564333578263356850}
   _startPointBall: {fileID: 0}
 --- !u!212 &2564333578263356861
 SpriteRenderer:

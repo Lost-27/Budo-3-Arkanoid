@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4059616590823579828}
   - component: {fileID: 4682787097395264473}
   - component: {fileID: 8785508368066396862}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,17 +52,8 @@ MonoBehaviour:
   _isIndestructible: 0
   _isInvisible: 0
   _pickupPrefab:
-  - {fileID: 9033946533651429550, guid: b3907cdf81638804289263111cd1ede9, type: 3}
-  - {fileID: 9033946533651429550, guid: d377be424d692e940a7b56cf01740018, type: 3}
-  - {fileID: 3097865665564421336, guid: c3fcc434fe234994c9934d00193a30b3, type: 3}
-  - {fileID: 3097865665564421336, guid: fca69740995a1ab46b50ccb4fd1815c0, type: 3}
-  - {fileID: 1588934045220091773, guid: 0bb54871e077f514fae4f15863532325, type: 3}
-  - {fileID: 6501093463460272498, guid: d98181f98c0d697489da42d995ce6492, type: 3}
-  - {fileID: 6501093463460272498, guid: f29ca20b245567b4db2f1c67d55e8931, type: 3}
-  - {fileID: 6501093463460272498, guid: beefa5e0db7bb8f48be02769025a2118, type: 3}
-  - {fileID: 6501093463460272498, guid: 0d0f36e854f9da14ca37d6c3a5726bb1, type: 3}
   - {fileID: 9033946533651429550, guid: dc7f911fc992b3c4d98ea3868db77d29, type: 3}
-  _pickupChance: 100
+  _pickupChance: 54.9
 --- !u!212 &4682787097395264473
 SpriteRenderer:
   m_ObjectHideFlags: 0

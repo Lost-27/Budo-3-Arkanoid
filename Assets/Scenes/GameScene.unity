@@ -1224,6 +1224,49 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4682787097395264472, guid: 400d87cdea592a3478d0f8404de8efde, type: 3}
   m_PrefabInstance: {fileID: 394946359}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &429971811
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 429971813}
+  - component: {fileID: 429971812}
+  m_Layer: 0
+  m_Name: BallsContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &429971812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429971811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a67f36f40375d2d41aa4d17513f80fc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &429971813
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429971811}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &437392828
 GameObject:
   m_ObjectHideFlags: 0
@@ -2081,7 +2124,7 @@ GameObject:
   - component: {fileID: 1003065064}
   - component: {fileID: 1003065065}
   - component: {fileID: 1003065066}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BottomWall
   m_TagString: BottomWall
   m_Icon: {fileID: 0}
@@ -4092,7 +4135,7 @@ MonoBehaviour:
   _maxLives: 5
   _startLives: 3
   _isAutoplay: 0
-  _autoplayTimeScale: 4
+  _autoplayTimeScale: 2
 --- !u!1 &2103485453
 GameObject:
   m_ObjectHideFlags: 0
@@ -4366,6 +4409,10 @@ PrefabInstance:
     - target: {fileID: 2564333578263356850, guid: a9471f4a5a13eef4c9d364a16b360a07, type: 3}
       propertyPath: m_Name
       value: Ball
+      objectReference: {fileID: 0}
+    - target: {fileID: 2564333578263356862, guid: a9471f4a5a13eef4c9d364a16b360a07, type: 3}
+      propertyPath: _speed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2564333578263356862, guid: a9471f4a5a13eef4c9d364a16b360a07, type: 3}
       propertyPath: _startPointBall
