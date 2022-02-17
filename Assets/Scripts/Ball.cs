@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -11,7 +12,6 @@ public class Ball : MonoBehaviour
     [Header("Base settings")] 
     [SerializeField] private float _speed = 300.0f;
     [SerializeField] private Rigidbody2D _rb;
-    [SerializeField] private GameObject _ballPrefab;
 
     [Header("Pad setting")] 
     [SerializeField] private Transform _startPointBall;
@@ -19,12 +19,24 @@ public class Ball : MonoBehaviour
     private Pad _pad;
 
     private bool _isStarted;
-    private bool _isTripleBall;
 
     private float _currentSpeed;
     private Vector3 _startScale;
+    private Vector3 _currenScale;
 
-    private Vector3 _offset;
+    private Vector3 _startOffset;
+    private Vector3 _currentOffset;
+
+    private List<float> _sizeModifiers = new List<float>();
+
+    #endregion
+
+    #region Events
+
+    public static event Action<Ball> OnCreated;
+    public static event Action<Ball> OnDestroyed;
+
+    
 
     #endregion
 
@@ -41,37 +53,38 @@ public class Ball : MonoBehaviour
     private void Awake()
     {
         _startScale = transform.localScale;
+        _currenScale = _startScale;
     }
 
     private void Start()
     {
         _pad = FindObjectOfType<Pad>();
+        
+        _startOffset = _startPointBall.position - _pad.transform.position;
+        _currentOffset = _startOffset;
 
         if (GameManager.Instance.IsAutoplay)
             AddStartingForce();
+        
+        OnCreated?.Invoke(this);
     }
 
     private void Update()
     {
-        if (!_isStarted)
+        if (_isStarted)
+            return;
+        
+        PositionBallOnPad();
+        
+        if (IsLBMouseClick())
         {
-            if (!_pad.IsMagnet)
-            {
-                PositionBallOnPad();
-            }
-            else
-            {
-                UpdateBallPosition();
-            }
-
-            if (_isTripleBall)
-                ChangeToThreeBalls();
-
-            if (IsLBMouseClick())
-            {
-                AddStartingForce();
-            }
+            AddStartingForce();
         }
+    }
+
+    private void OnDestroy()
+    {
+        OnDestroyed?.Invoke(this);
     }
 
     #endregion
@@ -83,19 +96,29 @@ public class Ball : MonoBehaviour
     {
         _isStarted = false;
         _rb.velocity = Vector2.zero;
+        _currentOffset = _startOffset;
         MakeNormalScale();
+    }
+
+    public void SetNewAngularVelocity(Quaternion rotation)
+    {
+        Rb.velocity = rotation * Vector2.up * Rb.velocity.magnitude;
     }
 
     public void ChangeSpeed(int speedMultiplier)
     {
         _currentSpeed *= speedMultiplier;
-        _rb.AddForce(RandomDirection() * _currentSpeed);
+        _rb.velocity = RandomDirection() * _currentSpeed;;
     }
 
     public void ChangeScale(float sizeModifier, float activeTime)
     {
-        transform.localScale = new Vector3(sizeModifier, sizeModifier, 1f);
-        Invoke(nameof(MakeNormalScale), activeTime);
+        _currenScale *= sizeModifier;
+        _currenScale.z = 1;
+        transform.localScale = _currenScale;
+        _sizeModifiers.Add(sizeModifier);
+        
+        Invoke(nameof(ReturnPreviousScale), activeTime);
     }
 
     public void MakeNormalScale()
@@ -103,32 +126,21 @@ public class Ball : MonoBehaviour
         transform.localScale = _startScale;
     }
 
+    public void ReturnPreviousScale()
+    {
+        transform.localScale = _currenScale / _sizeModifiers[0];
+        _sizeModifiers.RemoveAt(0);
+    }
+
+    public void StartBall()
+    {
+        AddStartingForce();
+    }
+
     public void StopMovingBall()
     {
         _isStarted = false;
         CalculateOffset();
-    }
-
-    public void UpdateBallPosition()
-    {
-        Vector3 padPosition = _startPointBall.position;
-        padPosition -= _offset;
-        transform.position = padPosition;
-    }
-    public void ChangeToThreeBalls()//(float activeTime)
-    {
-        _isTripleBall = true;
-        Vector3 curpos = transform.position;
-        curpos.x = transform.position.x;
-        curpos.y = transform.position.y;
-        for (int i = 0; i < 2; i++)
-        {
-            curpos.z = transform.position.z+i;
-            Vector3 fds = curpos;
-            Instantiate(_ballPrefab, fds, Quaternion.identity);
-            
-            // Invoke(nameof(MakeOneBall), activeTime);
-        }
     }
 
     #endregion
@@ -143,13 +155,13 @@ public class Ball : MonoBehaviour
 
     private void PositionBallOnPad()
     {
-        transform.position = _startPointBall.position;
+        transform.position = _pad.transform.position + _currentOffset;
     }
 
     private void AddStartingForce()
     {
         _currentSpeed = _speed;
-        _rb.AddForce(RandomDirection() * _currentSpeed);
+        _rb.velocity = RandomDirection() * _currentSpeed;
         _isStarted = true;
     }
 
@@ -164,7 +176,9 @@ public class Ball : MonoBehaviour
 
     private void CalculateOffset()
     {
-        _offset = _startPointBall.position - transform.position;
+        Vector3 newOffset = transform.position - _pad.transform.position;
+        newOffset.y = _startOffset.y;
+        _currentOffset = newOffset;
     }
 
     #endregion

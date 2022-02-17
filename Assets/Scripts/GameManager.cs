@@ -12,7 +12,7 @@ public class GameManager : GeneralSingleton<GameManager>
     [Header("Autoplay")]
     [SerializeField] private bool _isAutoplay;
 
-    [SerializeField] private float _autoplayTimeScale = 5f;
+    [SerializeField] private float _autoplayTimeScale = 2f;
 
     private bool _isGameOver;
 

@@ -95,8 +95,13 @@ public class Block : MonoBehaviour
 
         if (_pickupChance > randomChance)
         {
-            Instantiate(_pickupPrefab[Random.Range(0,_pickupPrefab.Length)], transform.position, Quaternion.identity);
+            Instantiate(GetRandomPickupPrefab(), transform.position, Quaternion.identity);
         }
+    }
+
+    private GameObject GetRandomPickupPrefab()
+    {
+        return _pickupPrefab[Random.Range(0,_pickupPrefab.Length)];
     }
 
     #endregion
