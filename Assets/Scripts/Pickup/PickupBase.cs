@@ -11,15 +11,11 @@ public abstract class PickupBase : MonoBehaviour
 
     #region Unity lifecycle
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag(Tags.Pad))
         {
             ApplyPickup();
-            Destroy(gameObject);
-        }
-        else if (collision.gameObject.CompareTag(Tags.BottomWall))
-        {
             Destroy(gameObject);
         }
     }

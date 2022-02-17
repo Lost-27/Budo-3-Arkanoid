@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BallSpeedPickup : PickupBase
@@ -11,11 +12,14 @@ public class BallSpeedPickup : PickupBase
 
     #region Private methods
 
-    //???
     protected override void ApplyPickup()
     {
-        Ball ball = FindObjectOfType<Ball>();
-        ball.ChangeSpeed(_speedMultiplier);
+        List<Ball> balls = BallsContainer.Instance.Balls;
+
+        foreach (Ball ball in balls)
+        {
+            ball.ChangeSpeed(_speedMultiplier);
+        }
     }
 
     #endregion

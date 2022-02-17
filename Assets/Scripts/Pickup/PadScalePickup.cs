@@ -4,7 +4,7 @@ public class PadScalePickup : PickupBase
 {
     #region Variables
 
-    [SerializeField] private Vector2 _padWidthScaling;
+    [SerializeField] private float _sizeModifier;
 
     #endregion
 
@@ -14,7 +14,7 @@ public class PadScalePickup : PickupBase
     protected override void ApplyPickup()
     {
         Pad pad = FindObjectOfType<Pad>();
-        pad.ChangeWidth(_padWidthScaling);
+        pad.ChangeWidth(_sizeModifier);
     }
 
     #endregion

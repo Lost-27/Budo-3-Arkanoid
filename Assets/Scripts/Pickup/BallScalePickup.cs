@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BallScalePickup : PickupBase
@@ -13,8 +14,12 @@ public class BallScalePickup : PickupBase
 
     protected override void ApplyPickup()
     {
-        Ball ball = FindObjectOfType<Ball>();
-        ball.ChangeScale(_sizeModifier, _activeTime);
+        List<Ball> balls = BallsContainer.Instance.Balls;
+
+        foreach (Ball ball in balls)
+        {
+            ball.ChangeScale(_sizeModifier, _activeTime);
+        }
     }
 
     #endregion
