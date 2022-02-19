@@ -28,15 +28,28 @@ public class Ball : MonoBehaviour
     private Vector3 _currentOffset;
 
     private List<float> _sizeModifiers = new List<float>();
+    
+    [Header("Explosive ball setup")]
+    [SerializeField] private SpriteRenderer _ballRend;
+    [SerializeField] private TrailRenderer _trailRend;
+    [SerializeField] private Sprite _explosiveBallSp;
+    [SerializeField] private Gradient _explosiveTrail;
+    [SerializeField] private LayerMask _layerMask;
+    
+    public bool _isExplosive;
+    
+    private float _explosionRadius;
+    private Sprite _baseSprite;
+    private Gradient _baseTrail;
+    
 
     #endregion
+    
 
     #region Events
 
     public static event Action<Ball> OnCreated;
     public static event Action<Ball> OnDestroyed;
-
-    
 
     #endregion
 
@@ -54,6 +67,8 @@ public class Ball : MonoBehaviour
     {
         _startScale = transform.localScale;
         _currenScale = _startScale;
+        _baseSprite = _ballRend.sprite;
+        _baseTrail = _trailRend.colorGradient;
     }
 
     private void Start()
@@ -64,9 +79,19 @@ public class Ball : MonoBehaviour
         _currentOffset = _startOffset;
 
         if (GameManager.Instance.IsAutoplay)
-            AddStartingForce();
+            BallLaunch();
         
         OnCreated?.Invoke(this);
+    }
+    
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag(Tags.Block))
+        {
+            if(_isExplosive)
+                ExplosiveBall();
+        }
+        
     }
 
     private void Update()
@@ -78,7 +103,7 @@ public class Ball : MonoBehaviour
         
         if (IsLBMouseClick())
         {
-            AddStartingForce();
+            BallLaunch();
         }
     }
 
@@ -94,7 +119,10 @@ public class Ball : MonoBehaviour
 
     public void InitialState()
     {
+        _ballRend.sprite = _baseSprite;
+        _trailRend.colorGradient = _baseTrail;
         _isStarted = false;
+        _isExplosive = false;
         _rb.velocity = Vector2.zero;
         _currentOffset = _startOffset;
         MakeNormalScale();
@@ -134,13 +162,20 @@ public class Ball : MonoBehaviour
 
     public void StartBall()
     {
-        AddStartingForce();
+        BallLaunch();
     }
 
     public void StopMovingBall()
     {
         _isStarted = false;
         CalculateOffset();
+    }
+    public void SetExplosionRadius(float explosionRadius)
+    {
+        _isExplosive = true;
+        _ballRend.sprite = _explosiveBallSp;
+        _trailRend.colorGradient = _explosiveTrail;
+        _explosionRadius = explosionRadius;
     }
 
     #endregion
@@ -158,7 +193,7 @@ public class Ball : MonoBehaviour
         transform.position = _pad.transform.position + _currentOffset;
     }
 
-    private void AddStartingForce()
+    private void BallLaunch()
     {
         _currentSpeed = _speed;
         _rb.velocity = RandomDirection() * _currentSpeed;
@@ -181,6 +216,27 @@ public class Ball : MonoBehaviour
         _currentOffset = newOffset;
     }
 
-    #endregion
+    private void ExplosiveBall()
+    {
+        // _isExplosive = true;
+        
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position,  _explosionRadius, _layerMask);
 
+        foreach (Collider2D col in colliders)
+        {
+            Debug.Log($"Name{col.gameObject.name}");
+            if (col.gameObject == gameObject)
+                continue;
+            
+            Block des = col.gameObject.GetComponent<Block>(); //?
+            des.GetHit();
+        }
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, _explosionRadius);
+    }
+
+    #endregion
 }

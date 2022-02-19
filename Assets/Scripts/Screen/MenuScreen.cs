@@ -8,8 +8,6 @@ public class MenuScreen : MonoBehaviour
     public Button PlayButton;
     public Button QuitButton;
 
-    private SceneHelper _sceneHelper;
-
     #endregion
 
 
@@ -19,8 +17,6 @@ public class MenuScreen : MonoBehaviour
     {
         PlayButton.onClick.AddListener(PlayButtonClicked);
         QuitButton.onClick.AddListener(QuitButtonClicked);
-
-        _sceneHelper = FindObjectOfType<SceneHelper>();
     }
 
     #endregion
@@ -30,12 +26,12 @@ public class MenuScreen : MonoBehaviour
 
     private void QuitButtonClicked()
     {
-        _sceneHelper.Quit();
+        SceneHelper.Instance.Quit();
     }
 
     private void PlayButtonClicked()
     {
-        _sceneHelper.LoadScene(1);
+        SceneHelper.Instance.LoadNextScene();
     }
 
     #endregion

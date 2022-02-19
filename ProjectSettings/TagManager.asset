@@ -7,6 +7,7 @@ TagManager:
   - Ball
   - Pad
   - BottomWall
+  - Block
   layers:
   - Default
   - TransparentFX
