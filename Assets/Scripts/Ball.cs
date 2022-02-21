@@ -10,14 +10,20 @@ public class Ball : MonoBehaviour
     private const float NUM_RANGE = 1.0f;
 
     [Header("Base settings")] 
-    [SerializeField] private float _speed = 300.0f;
+    [SerializeField] private float _speed = 8f;
     [SerializeField] private Rigidbody2D _rb;
 
-    [Header("Pad setting")] 
+    [Header("Pad setting")]
     [SerializeField] private Transform _startPointBall;
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource _audioSource;
+    
+    [Header("Speed Ball Settings")]
+    [SerializeField] private float _minSpeed = 2f;
+    [SerializeField] private float _maxSpeed = 20f;
     
     private Pad _pad;
-
     private bool _isStarted;
 
     private float _currentSpeed;
@@ -29,7 +35,7 @@ public class Ball : MonoBehaviour
 
     private List<float> _sizeModifiers = new List<float>();
     
-    [Header("Explosive ball setup")]
+    [Header("Explosive Ball Settings")]
     [SerializeField] private SpriteRenderer _ballRend;
     [SerializeField] private TrailRenderer _trailRend;
     [SerializeField] private Sprite _explosiveBallSp;
@@ -83,15 +89,16 @@ public class Ball : MonoBehaviour
         
         OnCreated?.Invoke(this);
     }
-    
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        _audioSource.Play();
+        
         if (collision.gameObject.CompareTag(Tags.Block))
         {
             if(_isExplosive)
                 ExplosiveBall();
         }
-        
     }
 
     private void Update()
@@ -105,6 +112,12 @@ public class Ball : MonoBehaviour
         {
             BallLaunch();
         }
+    }
+    
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, _explosionRadius);
     }
 
     private void OnDestroy()
@@ -133,10 +146,21 @@ public class Ball : MonoBehaviour
         Rb.velocity = rotation * Vector2.up * Rb.velocity.magnitude;
     }
 
-    public void ChangeSpeed(int speedMultiplier)
+    public void ChangeSpeed(float speedAdd)
     {
-        _currentSpeed *= speedMultiplier;
-        _rb.velocity = RandomDirection() * _currentSpeed;;
+        _currentSpeed += speedAdd;
+
+        if (_currentSpeed < _minSpeed)
+        {
+            _currentSpeed = _minSpeed;
+        }
+
+        if (_currentSpeed > _maxSpeed)
+        {
+            _currentSpeed = _maxSpeed;
+        }
+
+        _rb.velocity = RandomDirection() * _currentSpeed;
     }
 
     public void ChangeScale(float sizeModifier, float activeTime)
@@ -170,7 +194,7 @@ public class Ball : MonoBehaviour
         _isStarted = false;
         CalculateOffset();
     }
-    public void SetExplosionRadius(float explosionRadius)
+    public void SetExplosionBall(float explosionRadius)
     {
         _isExplosive = true;
         _ballRend.sprite = _explosiveBallSp;
@@ -231,11 +255,6 @@ public class Ball : MonoBehaviour
             Block des = col.gameObject.GetComponent<Block>(); //?
             des.GetHit();
         }
-    }
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, _explosionRadius);
     }
 
     #endregion

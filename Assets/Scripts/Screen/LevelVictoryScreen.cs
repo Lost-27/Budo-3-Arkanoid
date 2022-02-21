@@ -9,6 +9,9 @@ public class LevelVictoryScreen : MonoBehaviour
     [SerializeField] private GameObject _innerContainer;
     [SerializeField] private TextMeshProUGUI _dynamicScoreLabel;
     [SerializeField] private Button _nextButton;
+    
+    // [Header("Audio")]
+    // [SerializeField] private AudioClip _audioClip;
 
     public static bool _isLevelVictoryScreen; //???
 
@@ -41,6 +44,7 @@ public class LevelVictoryScreen : MonoBehaviour
 
     private void SetVisibility(bool isActive)
     {
+        // AudioManager.Instance.PlayOnShot(_audioClip);
         _innerContainer.SetActive(isActive);
     }
 

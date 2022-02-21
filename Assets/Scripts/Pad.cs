@@ -7,12 +7,13 @@ public class Pad : MonoBehaviour
 
     [SerializeField] private float _xRange;
     [SerializeField] private float _maxBounceAngle = 75f;
+
+    [Header("Pickup Settings")]
     [SerializeField] private float _minSizePad = 0.3f;
-    [SerializeField] private float _maxSizePad;
-    
-    private Transform _ballTransform;
+    [SerializeField] private float _maxSizePad = 2f;
 
     private Vector3 _currenSize;
+    private Transform _ballTransform;
 
     #endregion
 
@@ -50,7 +51,6 @@ public class Pad : MonoBehaviour
         }
     }
 
-    
 
     private void Update()
     {
@@ -75,12 +75,12 @@ public class Pad : MonoBehaviour
         {
             _currenSize.x = _minSizePad;
         }
-        
+
         if (_currenSize.x > _maxSizePad)
         {
             _currenSize.x = _maxSizePad;
         }
-        
+
         transform.localScale = _currenSize;
     }
 
@@ -124,7 +124,7 @@ public class Pad : MonoBehaviour
         currentPos.x = Mathf.Clamp(ballWorldPos.x, -_xRange, _xRange);
         transform.position = currentPos;
     }
-    
+
     private void CalculateBounceAngle(Collision2D collision, Ball ball)
     {
         Vector2 padPosition = transform.position;
