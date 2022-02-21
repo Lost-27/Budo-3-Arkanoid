@@ -3,7 +3,8 @@ using UnityEngine;
 public class PadScalePickup : PickupBase
 {
     #region Variables
-
+    
+    [Header("Minor settings")]
     [SerializeField] private float _sizeModifier;
 
     #endregion

@@ -5,6 +5,9 @@ using Random = UnityEngine.Random;
 public class Block : MonoBehaviour
 {
     #region Variables
+    
+    [Header("Audio")]
+    [SerializeField] private AudioClip _audioClip;
 
     [Header("Base Settings")] 
     [SerializeField] private Sprite[] _states;
@@ -53,7 +56,7 @@ public class Block : MonoBehaviour
     {
         if (!collision.gameObject.CompareTag(Tags.Ball))
             return;
-        
+
         GetHit();
         ApplyInternalActions();
     }
@@ -85,6 +88,7 @@ public class Block : MonoBehaviour
         if (_health <= 0)
         {
             GameManager.Instance.AddScore(_pointValue);
+            AudioManager.Instance.PlayOnShot(_audioClip);
             Destroy(gameObject);
             CreatePickupIfNeeded();
             OnDestroyed?.Invoke(this);

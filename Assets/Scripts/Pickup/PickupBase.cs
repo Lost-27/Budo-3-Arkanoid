@@ -3,8 +3,13 @@ using UnityEngine;
 public abstract class PickupBase : MonoBehaviour
 {
     #region Variables
-
+    
+    [Header("Base Settings")] 
+    [SerializeField] private int _pointValue;
     [SerializeField] protected float _activeTime;
+    
+    [Header("Audio")]
+    [SerializeField] private AudioClip _pickupClip;
 
     #endregion
 
@@ -15,6 +20,8 @@ public abstract class PickupBase : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(Tags.Pad))
         {
+            AudioManager.Instance.PlayOnShot(_pickupClip);
+            GameManager.Instance.AddScore(_pointValue);
             ApplyPickup();
             Destroy(gameObject);
         }

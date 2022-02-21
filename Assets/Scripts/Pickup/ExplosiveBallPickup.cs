@@ -4,7 +4,8 @@ using UnityEngine;
 public class ExplosiveBallPickup : PickupBase
 {
     #region Variables
-
+    
+    [Header("Minor settings")]
     [SerializeField] private float _explosionRadius;
 
     #endregion
@@ -18,7 +19,7 @@ public class ExplosiveBallPickup : PickupBase
 
         foreach (Ball ball in balls)
         {
-            ball.SetExplosionRadius(_explosionRadius);
+            ball.SetExplosionBall(_explosionRadius);
         }
     }
 

@@ -3,7 +3,8 @@ using UnityEngine;
 public class LifePickup : PickupBase
 {
     #region Variables
-
+    
+    [Header("Minor settings")]
     [SerializeField] private bool _isAddsLives;
 
     #endregion

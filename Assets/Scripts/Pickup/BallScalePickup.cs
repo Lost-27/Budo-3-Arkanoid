@@ -4,7 +4,8 @@ using UnityEngine;
 public class BallScalePickup : PickupBase
 {
     #region Variables
-
+    
+    [Header("Minor settings")]
     [SerializeField] private float _sizeModifier;
 
     #endregion

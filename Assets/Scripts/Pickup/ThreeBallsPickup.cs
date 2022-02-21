@@ -4,7 +4,8 @@ using UnityEngine;
 public class ThreeBallsPickup : PickupBase
 {
     #region Variables
-
+    
+    [Header("Minor settings")]
     [SerializeField] private int _ballCount;
 
     #endregion

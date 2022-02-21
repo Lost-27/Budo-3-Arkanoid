@@ -10,6 +10,8 @@ public class ExplosiveBlock : Block
     [Header(nameof(ExplosiveBlock))] 
     [SerializeField] private float _radius;
 
+    public bool _isExplosiveBlock;
+
     [SerializeField] private LayerMask _layerMask;
     
 

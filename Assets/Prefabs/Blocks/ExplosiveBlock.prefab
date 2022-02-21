@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19f5f96c59b7ee74bbadf740c6698bb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioClip: {fileID: 8300000, guid: a862fd392fb213d4ebce9340dd9e800b, type: 3}
   _states:
   - {fileID: 21300000, guid: 89b720a7ff8b8514fa70f73c092266fb, type: 3}
   _spriteRend: {fileID: 3867159645800528443}

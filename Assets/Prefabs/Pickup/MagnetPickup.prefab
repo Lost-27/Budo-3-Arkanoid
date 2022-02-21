@@ -144,4 +144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e8a1589d8febbc4ab79c5ccfe289f7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pointValue: 10
   _activeTime: 10
+  _pickupClip: {fileID: 8300000, guid: 7bd6b897eb5ca4b7d88a205c4a51640c, type: 3}

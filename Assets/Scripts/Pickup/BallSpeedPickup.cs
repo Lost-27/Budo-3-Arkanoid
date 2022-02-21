@@ -4,8 +4,9 @@ using UnityEngine;
 public class BallSpeedPickup : PickupBase
 {
     #region Variables
-
-    [SerializeField] private int _speedMultiplier;
+    
+    [Header("Minor settings")]
+    [SerializeField] private float _speedAdd;
 
     #endregion
 
@@ -18,7 +19,7 @@ public class BallSpeedPickup : PickupBase
 
         foreach (Ball ball in balls)
         {
-            ball.ChangeSpeed(_speedMultiplier);
+            ball.ChangeSpeed(_speedAdd);
         }
     }
 

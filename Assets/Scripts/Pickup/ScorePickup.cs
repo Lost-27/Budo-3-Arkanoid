@@ -3,7 +3,8 @@ using UnityEngine;
 public class ScorePickup : PickupBase
 {
     #region Variables
-
+    
+    [Header("Minor settings")]
     [SerializeField] private int _scoreToAdd;
 
     #endregion
